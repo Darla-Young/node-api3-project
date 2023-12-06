@@ -19,9 +19,8 @@ async function validateUserId(req, res, next) {
 }
 
 function validateUser(req, res, next) {
-  // used when creating or updating user
-  // if `body` lacks `name` field, respond with status `400` and message: "missing required name field"
-  next()
+  if (!req.body.name) res.status(400).json({message: "missing required name field"})
+  else next()
 }
 
 function validatePost(req, res, next) {
