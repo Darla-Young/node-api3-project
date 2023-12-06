@@ -1,11 +1,4 @@
 const Users = require('../users/users-model')
-/*
-  getById(id)
-*/
-const Posts = require('../posts/posts-model')
-/*
-  getById(id)
-*/
 
 function logger(req, res, next) {
   console.log(req.method, req.originalUrl, new Date().toLocaleString())
@@ -24,9 +17,8 @@ function validateUser(req, res, next) {
 }
 
 function validatePost(req, res, next) {
-  // used when creating a new post
-  // if `body` lacks `text` field, respond with status `400` and message: "missing required text field"
-  next()
+  if (!req.body.text) res.status(400).json({message: "missing required text field"})
+  else next()
 }
 
 module.exports = {
