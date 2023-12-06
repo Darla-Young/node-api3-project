@@ -1,21 +1,6 @@
 const express = require('express');
 const Users = require('./users-model')
-/*
-  get()
-  getById(id)
-  getUserPosts(userId)
-  insert(user) => returns new user
-  update(id, changes) => returns updated user
-  remove(id) => returns # of deletions
-*/
 const Posts = require('../posts/posts-model')
-/*
-  get()
-  getById(id)
-  insert(post)
-  update(id, changes)
-  remove(id)
-*/
 const {
   validateUserId, 
   validateUser, 

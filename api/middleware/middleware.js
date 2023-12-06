@@ -1,14 +1,21 @@
+const Users = require('../users/users-model')
+/*
+  getById(id)
+*/
+const Posts = require('../posts/posts-model')
+/*
+  getById(id)
+*/
+
 function logger(req, res, next) {
   console.log(req.method, req.originalUrl, new Date().toLocaleString())
   next()
 }
 
-function validateUserId(req, res, next) {
-  // used for all endpoints with a `:id` parameter
-  // checks the database for user with given id.
-  // if `id` is valid, stores user object as `req.user` and allows request to continue
-  // if `id` is invalid, responds with status `404` and message: "user not found"
-  next()
+async function validateUserId(req, res, next) {
+  const user = await Users.getById(req.params.id)
+  if (!user) res.status(404).json({message: "user not found"})
+  else next()
 }
 
 function validateUser(req, res, next) {
